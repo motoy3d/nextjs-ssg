@@ -5,7 +5,8 @@ import styles from '@/styles/Home.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+// @ts-ignore
+export default function Home({now}) {
   return (
     <>
       <Head>
@@ -37,6 +38,7 @@ export default function Home() {
               />
             </a>
           </div>
+          <h2>now: { now }</h2>
         </div>
 
         <div className={styles.center}>
@@ -111,4 +113,11 @@ export default function Home() {
       </main>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const now = new Date().toLocaleString('ja-JP')
+  return {
+    props: {now},
+  }
 }
